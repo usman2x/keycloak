@@ -1,3 +1,4 @@
+### Motivation and Considerations
 Your microservices or mobile applications are typically secured using authentication tokens like JWT. Often, short-lived access tokens are used so that even if they are stolen, the window for misuse is small. In other cases, refresh tokens are securely stored on the device, and used to request a new access token when needed. However, relying solely on token-based authentication is not enough for high-risk domains like banking or healthcare.
 
 Security in customer-facing applications must be implemented in a way that does not significantly compromise user experience. Customers want a smooth and frictionless interaction. security should be seamless and feel like a natural part of the product, not a burden. FinTech and other sensitive sectors must go beyond simple authentication mechanisms. Service-level or app-level authentication alone is insufficient. Product owners need to adopt multiple layers of security and balance them carefully with usability.
@@ -40,3 +41,7 @@ Large or unusual financial transactions.
 8. Audit logging and anomaly detection: Log all authentication and sensitive events for auditing. Do not store sensitive data in logs, but capture enough detail to detect suspicious behavior and investigate issues.
 
 Security is not just about protecting systems. it's about protecting users in a way that doesn't frustrate them. The best systems are both secure and user-friendly.
+
+#### Handling JWT Tokens
+JWT claims like `exp`, `iat`, and `nbf` define a token’s time validity—`exp` (expiration) sets when the token becomes invalid, `iat` (issued at) marks when it was created, and `nbf` (not before) prevents early use. The `aud` (audience) claim ensures the token is intended for a specific service, while `azp` (authorized party) identifies which client requested it. Together, these claims enhance security by enforcing time-based validation and proper usage boundaries for tokens across services and clients.
+
